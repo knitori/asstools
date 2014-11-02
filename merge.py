@@ -148,7 +148,7 @@ def usage(used_command):
     def p(*args, **kwargs):
         print(*args, file=sys.stderr, **kwargs)
 
-    p('Usage: {} [-h|--help] [-r] [-g microseconds] ([-s microseconds] filename)'.format(
+    p('Usage: {} [-h|--help] [-r] [-g milliseconds] ([-s milliseconds] filename)'.format(
         used_command))
 
 
@@ -170,9 +170,9 @@ def main():
         elif arg == '-t':
             doc_title = sys.argv.pop(0)
         elif arg == '-g':
-            global_sync = int(sys.argv.pop(0))
+            global_sync = int(sys.argv.pop(0)) * 1000
         elif arg == '-s':
-            file_sync = int(sys.argv.pop(0))
+            file_sync = int(sys.argv.pop(0)) * 1000
             filename = sys.argv.pop(0)
             files.append((file_sync, filename))
         else:
